@@ -27,7 +27,7 @@
         <nav id="navbar" class="nav-menu navbar">
           <ul>
             <li><a id="list" href="#" class="nav-link scrollto" onclick="HideShow('container-list','container-search')">
-            <span onclick="findBooksOfClient()">Minha lista</span></a></li>
+            <span>Minha lista</span></a></li>
   
             <li><a id="search" class="nav-link scrollto" onclick="HideShow('container-search','container-list')">
             <span id="search-button">Pesquisar</span></a></li>
@@ -47,29 +47,7 @@
           </div>
     
           <div class="galery">
-            <ul >
-              <li>
-                <div  id="berserkerDiv" class="berserkerClass" >
-                  <img
-                    src="https://steamuserimages-a.akamaihd.net/ugc/1722038109962735453/892F228E4A9E9602E12400618F58830775C4D947/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"
-                    class="guts" alt="padrao"
-                    width="256" height="256"
-                    onclick="showPopup(this)"
-                    id="img">
-                </div>
-              </li>
-    
-    
-              <li>
-                <div id="berserkerDiv" class="berserkerClass" >
-                  <img
-                    src="https://preview.redd.it/blind-girls-peaceful-day-at-the-park-art-by-popopoka-v0-0fmu7r7wqb6a1.jpg?auto=webp&s=6f7d26bd57188f25bc4de82f2587856eded8a344"
-                    class="guts" alt="banco"
-                    width="256" height="256"
-                    onclick="showPopup(this)"
-                    id="img2">
-                </div>
-              </li>
+            <ul id="client-book-list">
             </ul>
     
             <div id="popupId" class = "popup" >
@@ -89,20 +67,11 @@
     
           <div class="search-bar" style="margin-bottom: 50px;">
             <input id="text-search" type="text" required="True" placeholder="Digite sua pesquisa">
-              <button id="search_title" type="submit" onclick="findBooksOfTitle()">Pesquisar</button>
+              <button id="search_title" type="submit" onclick="findBooksSearched()">Pesquisar</button>
           </div>
     
           <div id="Found"class="found">
-            <ul >
-              <li>
-                <div  id="berserkerDivList" class="berserkerClassList" >
-                  <img
-                    src="https://1.bp.blogspot.com/-t4e3U8TlTwo/XiUH1IkSRUI/AAAAAAABEi0/8Map-x8iFGcDLYMNvp7dt67RMqYwwCf5wCLcBGAsYHQ/s1600/JURASSIC%2BPARK_EDITORA%2BALEPH_ARQUIVOS%2BDO%2BWOO.png"
-                    class="guts" alt="padrao"
-                    width="256" height="256"
-                    onclick="showPopupList(this)">
-                </div>
-              </li>
+            <ul id="search-book-list">
             </ul>
             <div id="popupListId" style="position: absolute;"class = "popupList">
               <img id="popup-image-list"
@@ -110,7 +79,6 @@
                 height="300"
                 src="">
                 <div id="popup-title-list"></div>
-                <a href="#" onclick="addBookToClient">ADD</a>
             </div>
           </div>
     
@@ -148,7 +116,21 @@
     
                     <div class="book-detail">
                       <label for="genero" class="respostaUm">Generos:
-                        <input type="text" id="genero" required="True" class="respostaDois" multiple >
+                        <br>
+                        <label>
+                          <input type="checkbox" name="option" value="option1">
+                          Option 1
+                        </label>
+                        
+                        <label>
+                          <input type="checkbox" name="option" value="option2">
+                          Option 2
+                        </label>
+                        
+                        <label>
+                          <input type="checkbox" name="option" value="option3">
+                          Option 3
+                        </label>
                       </label>
                     </div>
     

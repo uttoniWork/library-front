@@ -74,6 +74,7 @@ h6 {
     margin-left: 300px;
   }
 
+  /*
   @media (max-width: 1199px) {
     #header {
       left: -300px;
@@ -83,7 +84,7 @@ h6 {
       margin-left: 0;
     }
   }
-
+*/
 
   /*--------------------------------------------------------------
   # Navigation Menu
@@ -390,9 +391,7 @@ h6 {
   opacity: 0.3;
 }
 
-.found{
-  display: none;
-}
+
 
 .found .livros-wrap {
   transition: 0.3s;
@@ -551,7 +550,6 @@ h6 {
   border-radius: 5%;
   padding: 80px;
   border: 1px solid #333;
-
 }
 
 .berserkerClass {

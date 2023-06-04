@@ -1,3 +1,6 @@
+window.onload = function() {
+    findBooksOfClient();
+};
 
 function getItem(){
     return localStorage.getItem(client)
@@ -8,63 +11,6 @@ function HideShow(id, inverse_id){
     document.getElementById(id).style.display = 'block';
     document.getElementById(inverse_id).style.display = 'none';
 }
-
-//////////////////////////   DON'T TOUCH IS WORKING BY MIRACLE           /////////////////////////////////////////////////////
-var image = document.querySelector(".berserkerClass");
-var popup = document.querySelector(".popup");
-image.addEventListener("click", function () {
-
-    popup.style.display = 'block';
-});
-popup.addEventListener("click", function () {
-    popup.style.display = 'none';
-});
-////////////////////////////////////////////////////////////////////////////////
-var imageList = document.querySelector(".berserkerClassList");
-var popupList = document.querySelector(".popupList");
-popupList.addEventListener("click", function () {
-
-    popupList.style.display = 'block';
-});
-popupList.addEventListener("click", function () {
-    popupList.style.display = 'none';
-});
-////////////////////////////////////////////////////////////////////////////////////
-function showPopup(img) {
-    const popup = document.getElementById('popupId');
-    const popupImage = document.getElementById('popup-image');
-    const popupTitle = document.getElementById('popup-title');
-
-    popupImage.src = img.src;
-    popupTitle.innerText = img.alt;
-
-    popup.style.display = 'flex';
-  }
-
-  function closePopup() {
-    const popup = document.getElementById('popupId');
-
-    popup.style.display = 'none';
-  }
-
-  function showPopupList(img) {
-    const popup = document.getElementById('popupListId');
-    const popupImage = document.getElementById('popup-image-list');
-    const popupTitle = document.getElementById('popup-title-list');
-
-    popupImage.src = img.src;
-    popupTitle.innerText = img.alt;
-
-    popup.style.display = 'flex';
-  }
-
-  function closePopup() {
-    const popup = document.getElementById('popupListId');
-
-    popup.style.display = 'none';
-  }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 function showRegister(id){
     document.getElementById(id).style.display = 'block';
@@ -149,54 +95,131 @@ function createBook(){
 
 }
 
+var clientBookList = []
+
 //lista livros do cliente, deve ser carregado assim q a pagina carrega pra montar a lista de livros do cliente
 function findBooksOfClient(){
     
-    var form = document.getElementById("login");
-    
-    form === null || form === void 0 ? void 0 : form.addEventListener("submit", function (event) {
-        event.preventDefault();
+    const clientId = 0;
 
-        const clientId = 0;
+    let url = 'http://localhost:15000/book?clientId=' + clientId;
 
-        let url = 'http://localhost:15000/book/clientId=' + clientId;
+    console.log("buscando livros")
 
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                // 'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log("Found")
+        console.log(json)
+
+        var list = document.getElementById("client-book-list")
+
+        console.log("criando container")
+
+        json.forEach(function(book) {
+
+            console.log(book)
+
+            var li = document.createElement("li")
+            var container = document.createElement("div")
+
+            var img = document.createElement("img")
+            img.style.height="250px"
+            img.src = book.coverImage
+            var title = document.createElement("figcaption")
+            title.textContent = book.title
+            var author = document.createElement("figcaption")
+            author.textContent = book.author
+            var editor = document.createElement("figcaption")
+            editor.textContent = book.editor
+            var releaseYear = document.createElement("figcaption")
+            releaseYear.textContent = book.releaseYear
+            var genres = document.createElement("figcaption")
+            genres.textContent = book.genres.map(obj => obj.genreName).join(", ");
+
+            container.appendChild(img)
+            container.appendChild(title)
+            container.appendChild(author)
+            container.appendChild(editor)
+            container.appendChild(releaseYear)
+            container.appendChild(genres)
+
+            li.appendChild(container)
+            list.appendChild(li)
+
+            console.log("container criado com imagem")
         })
-        .then(response =>  response.json())
-        .then((json) => {
-            //Do something
-        })
-    });
+    })
 }
 
-
-var listOfBooks = [];
-
 //pesquisa livros por genero
-function findBooksOfTitle(){
+function findBooksSearched(){
 
     var bookTitle = document.getElementById("text-search").value;
 
-    let url = 'http://localhost:15000/book/title/bookTitle=' + bookTitle;
+    let url = 'http://localhost:15000/book/title?bookTitle=' + bookTitle;
 
     console.log("searching ", bookTitle)
 
     fetch(url, {
         method: 'GET',
         headers: {
-            //'Accept': 'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
     })
-    .then(response =>  {
-        listOfBooks = response.json()
-        console.log("Found ", listOfBooks);
+    .then(response => response.json())
+    .then(json => {
+        console.log("Found")
+        //console.log(json)
+
+        var list = document.getElementById("search-book-list")
+
+        console.log("criando container")
+
+        json.forEach(function(book) {
+
+            console.log(book)
+
+            var li = document.createElement("li")
+            var container = document.createElement("div")
+
+            var img = document.createElement("img")
+            img.style.height="250px"
+            img.src = book.coverImage
+            var title = document.createElement("figcaption")
+            title.textContent = book.title
+            var author = document.createElement("figcaption")
+            author.textContent = book.author
+            var editor = document.createElement("figcaption")
+            editor.textContent = book.editor
+            var releaseYear = document.createElement("figcaption")
+            releaseYear.textContent = book.releaseYear
+            var genres = document.createElement("figcaption")
+            genres.textContent = book.genres.map(obj => obj.genreName).join(", ");
+
+            var addButton = document.createElement("button")
+            addButton.textContent="ADD"
+            addButtton.onclick="addBookToClient()"
+
+            container.appendChild(img)
+            container.appendChild(title)
+            container.appendChild(author)
+            container.appendChild(editor)
+            container.appendChild(releaseYear)
+            container.appendChild(genres)
+
+            li.appendChild(container)
+            list.appendChild(li)
+
+            console.log("container criado com imagem")
+        })
     })
 }
 
@@ -206,27 +229,22 @@ function addBookToClient(){
 
     let url = 'http://localhost:15000/book/choose';
 
-    var form = document.getElementById("create");
-    form === null || form === void 0 ? void 0 : form.addEventListener("submit", function (event) {
-        event.preventDefault();
+    const clientId = 4
+    const bookId = 2
 
-        const clientId = 0
-        const bookId = document.getElementById("bookId").value
+    var clientBookRequest = {
+        "clientId": clientId,
+        "bookId": bookId
+    };
 
+    console.log("request: ", clientBookRequest)
 
-        var clientBookRequest = {
-          "clientId": clientId,
-          "bookId": bookId
-        };
-
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                // 'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(clientBookRequest)
-        })
-            .then(response => response.json())
-    });
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(clientBookRequest)
+    }) 
 }
