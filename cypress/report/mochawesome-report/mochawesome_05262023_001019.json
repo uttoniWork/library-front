@@ -1,0 +1,125 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-05-26T03:10:15.298Z",
+    "end": "2023-05-26T03:10:19.602Z",
+    "duration": 4304,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8005758e-9947-43de-aac8-cacebb675161",
+      "title": "",
+      "fullFile": "cypress\\e2e\\create-book.cy.js",
+      "file": "cypress\\e2e\\create-book.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a9a9cf70-2e98-4146-8c85-1682d677a9d2",
+          "title": "Book Create Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "create successful",
+              "fullTitle": "Book Create Test create successful",
+              "timedOut": null,
+              "duration": 2338,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../index.html');\ncy.viewport(1280, 1080);\ncy.get('#search').click();\ncy.get('#cadButton').click();\ncy.get('#content').should('be.visible');\ncy.get('#book_name');\ncy.get('#book_name').type('teste');\ncy.get('#autor');\ncy.get('#autor').type('teste');\ncy.get('#image');\ncy.get('#image').type('teste');\ncy.get('#genero');\ncy.get('#genero').type('teste');\ncy.get('#editora');\ncy.get('#editora').type('teste');\ncy.get('#mes');\ncy.get('#mes').type('teste');\ncy.get('#bookCreate').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Usuario cadastrado!');\n});\ncy.get('#content').should('not.visible');",
+              "err": {},
+              "uuid": "1b9e65cf-fc26-430b-a523-7375f08bd0f2",
+              "parentUUID": "a9a9cf70-2e98-4146-8c85-1682d677a9d2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "missing field",
+              "fullTitle": "Book Create Test missing field",
+              "timedOut": null,
+              "duration": 1944,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../index.html');\ncy.viewport(1280, 1080);\ncy.get('#search').click();\ncy.get('#cadButton').click();\ncy.get('#content').should('be.visible');\ncy.get('#book_name');\ncy.get('#book_name').type('teste');\ncy.get('#book_name').clear();\ncy.get('#autor');\ncy.get('#autor').type('teste');\ncy.get('#image');\ncy.get('#image').type('teste');\ncy.get('#genero');\ncy.get('#genero').type('teste');\ncy.get('#editora');\ncy.get('#editora').type('teste');\ncy.get('#mes');\ncy.get('#mes').type('teste');\ncy.get('#bookCreate').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Preencha todos os campos');\n});",
+              "err": {},
+              "uuid": "61d3328c-a294-4f50-9e0c-c4509e4db7d9",
+              "parentUUID": "a9a9cf70-2e98-4146-8c85-1682d677a9d2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1b9e65cf-fc26-430b-a523-7375f08bd0f2",
+            "61d3328c-a294-4f50-9e0c-c4509e4db7d9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4282,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/report/mochawesome-report",
+        "overwrite": true,
+        "html": false,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

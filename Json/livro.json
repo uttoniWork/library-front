@@ -1,0 +1,20 @@
+{
+    "livro":{
+        "autor":
+        {
+            "type": "string"
+        },
+        "editora":{
+            "type": "string"
+        },
+        "foto":{
+            "type": "blob"
+        },
+        "titulo":{
+            "type": "string"
+        },
+        "ano de lancamento":{
+            "type": "integer"
+        }
+    }
+}

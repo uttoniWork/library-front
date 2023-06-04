@@ -1,0 +1,125 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-05-26T03:10:30.318Z",
+    "end": "2023-05-26T03:10:34.202Z",
+    "duration": 3884,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5117a8d5-f004-4025-b1c5-d344dcb50461",
+      "title": "",
+      "fullFile": "cypress\\e2e\\teste_Login.cy.js",
+      "file": "cypress\\e2e\\teste_Login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "058c86bf-4410-4290-8921-9c5a29c1d90b",
+          "title": "Login test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Sucess",
+              "fullTitle": "Login test Sucess",
+              "timedOut": null,
+              "duration": 2479,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../login_cadastro.html');\ncy.get('#signin').click();\ncy.get('#emailLogin').type('vini@gmail.com');\ncy.get('#passwordLogin').type('1234');\ncy.get('#buttonLogin').click();\ncy.url().then(url => {\n  cy.url().should('include', 'index.html');\n});",
+              "err": {},
+              "uuid": "f2d8d337-4036-4358-b7b5-7ac0d93388dc",
+              "parentUUID": "058c86bf-4410-4290-8921-9c5a29c1d90b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "missing filed",
+              "fullTitle": "Login test missing filed",
+              "timedOut": null,
+              "duration": 1383,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../login_cadastro.html');\ncy.get('#signin').click();\ncy.get('#emailLogin').type('vini@gmail.com');\ncy.get('#emailLogin').clear();\ncy.get('#passwordLogin').type('1234');\ncy.get('#buttonLogin').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Preencha este campo');\n});",
+              "err": {},
+              "uuid": "1d20b4c6-9cc0-4490-9313-36f3e7d63132",
+              "parentUUID": "058c86bf-4410-4290-8921-9c5a29c1d90b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f2d8d337-4036-4358-b7b5-7ac0d93388dc",
+            "1d20b4c6-9cc0-4490-9313-36f3e7d63132"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3862,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/report/mochawesome-report",
+        "overwrite": true,
+        "html": false,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

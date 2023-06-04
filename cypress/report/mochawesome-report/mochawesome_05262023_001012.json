@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-05-26T03:10:08.411Z",
+    "end": "2023-05-26T03:10:12.545Z",
+    "duration": 4134,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ff94f7d3-c063-4317-b678-8eae1a9d1b0e",
+      "title": "",
+      "fullFile": "cypress\\e2e\\create-acount.cy.js",
+      "file": "cypress\\e2e\\create-acount.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2f0eb27c-de03-494a-adc0-89d885798b2f",
+          "title": "Create test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Sucess",
+              "fullTitle": "Create test Sucess",
+              "timedOut": null,
+              "duration": 2476,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../login_cadastro.html');\ncy.get('#userName').type('vini');\ncy.get('#email').type('vini@gmail.com');\ncy.get('#password').type('1234');\ncy.get('#buttonCreate').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Usuario cadastrado!');\n});",
+              "err": {},
+              "uuid": "ed667bdb-8540-4eda-b459-94b4bea2309a",
+              "parentUUID": "2f0eb27c-de03-494a-adc0-89d885798b2f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "empty field",
+              "fullTitle": "Create test empty field",
+              "timedOut": null,
+              "duration": 914,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../login_cadastro.html');\ncy.get('#userName').type('vini');\ncy.get('#userName').clear();\ncy.get('#email').type('vini@gmail.com');\ncy.get('#password').type('1234');\ncy.get('#buttonCreate').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Preencha esse campo.');\n});",
+              "err": {},
+              "uuid": "6b322e22-4c65-42e4-a30b-b253c2826220",
+              "parentUUID": "2f0eb27c-de03-494a-adc0-89d885798b2f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "invalid email 1",
+              "fullTitle": "Create test invalid email 1",
+              "timedOut": null,
+              "duration": 715,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../login_cadastro.html');\ncy.get('#userName').type('vini');\ncy.get('#email').type('vini');\ncy.get('#password').type('1234');\ncy.get('#buttonCreate').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Endereço de Email invalido');\n});",
+              "err": {},
+              "uuid": "752b8153-55fb-49a4-ac59-20c900e16d72",
+              "parentUUID": "2f0eb27c-de03-494a-adc0-89d885798b2f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ed667bdb-8540-4eda-b459-94b4bea2309a",
+            "6b322e22-4c65-42e4-a30b-b253c2826220",
+            "752b8153-55fb-49a4-ac59-20c900e16d72"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4105,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/report/mochawesome-report",
+        "overwrite": true,
+        "html": false,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

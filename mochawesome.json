@@ -1,0 +1,452 @@
+{
+  "stats": {
+    "suites": 5,
+    "tests": 11,
+    "passes": 11,
+    "pending": 0,
+    "failures": 0,
+    "testsRegistered": 11,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "start": "2023-05-26T03:10:08.411Z",
+    "end": "2023-05-26T03:10:34.202Z",
+    "duration": 25791
+  },
+  "results": [
+    {
+      "uuid": "ff94f7d3-c063-4317-b678-8eae1a9d1b0e",
+      "title": "",
+      "fullFile": "cypress\\e2e\\create-acount.cy.js",
+      "file": "cypress\\e2e\\create-acount.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2f0eb27c-de03-494a-adc0-89d885798b2f",
+          "title": "Create test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Sucess",
+              "fullTitle": "Create test Sucess",
+              "timedOut": null,
+              "duration": 2476,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../login_cadastro.html');\ncy.get('#userName').type('vini');\ncy.get('#email').type('vini@gmail.com');\ncy.get('#password').type('1234');\ncy.get('#buttonCreate').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Usuario cadastrado!');\n});",
+              "err": {},
+              "uuid": "ed667bdb-8540-4eda-b459-94b4bea2309a",
+              "parentUUID": "2f0eb27c-de03-494a-adc0-89d885798b2f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "empty field",
+              "fullTitle": "Create test empty field",
+              "timedOut": null,
+              "duration": 914,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../login_cadastro.html');\ncy.get('#userName').type('vini');\ncy.get('#userName').clear();\ncy.get('#email').type('vini@gmail.com');\ncy.get('#password').type('1234');\ncy.get('#buttonCreate').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Preencha esse campo.');\n});",
+              "err": {},
+              "uuid": "6b322e22-4c65-42e4-a30b-b253c2826220",
+              "parentUUID": "2f0eb27c-de03-494a-adc0-89d885798b2f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "invalid email 1",
+              "fullTitle": "Create test invalid email 1",
+              "timedOut": null,
+              "duration": 715,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../login_cadastro.html');\ncy.get('#userName').type('vini');\ncy.get('#email').type('vini');\ncy.get('#password').type('1234');\ncy.get('#buttonCreate').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Endereço de Email invalido');\n});",
+              "err": {},
+              "uuid": "752b8153-55fb-49a4-ac59-20c900e16d72",
+              "parentUUID": "2f0eb27c-de03-494a-adc0-89d885798b2f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ed667bdb-8540-4eda-b459-94b4bea2309a",
+            "6b322e22-4c65-42e4-a30b-b253c2826220",
+            "752b8153-55fb-49a4-ac59-20c900e16d72"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4105,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "8005758e-9947-43de-aac8-cacebb675161",
+      "title": "",
+      "fullFile": "cypress\\e2e\\create-book.cy.js",
+      "file": "cypress\\e2e\\create-book.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a9a9cf70-2e98-4146-8c85-1682d677a9d2",
+          "title": "Book Create Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "create successful",
+              "fullTitle": "Book Create Test create successful",
+              "timedOut": null,
+              "duration": 2338,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../index.html');\ncy.viewport(1280, 1080);\ncy.get('#search').click();\ncy.get('#cadButton').click();\ncy.get('#content').should('be.visible');\ncy.get('#book_name');\ncy.get('#book_name').type('teste');\ncy.get('#autor');\ncy.get('#autor').type('teste');\ncy.get('#image');\ncy.get('#image').type('teste');\ncy.get('#genero');\ncy.get('#genero').type('teste');\ncy.get('#editora');\ncy.get('#editora').type('teste');\ncy.get('#mes');\ncy.get('#mes').type('teste');\ncy.get('#bookCreate').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Usuario cadastrado!');\n});\ncy.get('#content').should('not.visible');",
+              "err": {},
+              "uuid": "1b9e65cf-fc26-430b-a523-7375f08bd0f2",
+              "parentUUID": "a9a9cf70-2e98-4146-8c85-1682d677a9d2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "missing field",
+              "fullTitle": "Book Create Test missing field",
+              "timedOut": null,
+              "duration": 1944,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../index.html');\ncy.viewport(1280, 1080);\ncy.get('#search').click();\ncy.get('#cadButton').click();\ncy.get('#content').should('be.visible');\ncy.get('#book_name');\ncy.get('#book_name').type('teste');\ncy.get('#book_name').clear();\ncy.get('#autor');\ncy.get('#autor').type('teste');\ncy.get('#image');\ncy.get('#image').type('teste');\ncy.get('#genero');\ncy.get('#genero').type('teste');\ncy.get('#editora');\ncy.get('#editora').type('teste');\ncy.get('#mes');\ncy.get('#mes').type('teste');\ncy.get('#bookCreate').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Preencha todos os campos');\n});",
+              "err": {},
+              "uuid": "61d3328c-a294-4f50-9e0c-c4509e4db7d9",
+              "parentUUID": "a9a9cf70-2e98-4146-8c85-1682d677a9d2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1b9e65cf-fc26-430b-a523-7375f08bd0f2",
+            "61d3328c-a294-4f50-9e0c-c4509e4db7d9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4282,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "e3f5325a-3e2f-4206-99f5-3ec95764b60b",
+      "title": "",
+      "fullFile": "cypress\\e2e\\teste-search.cy.js",
+      "file": "cypress\\e2e\\teste-search.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "38eb23de-6b9e-4b2b-afc6-d18785c21959",
+          "title": "Search Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "seachr successful",
+              "fullTitle": "Search Test seachr successful",
+              "timedOut": null,
+              "duration": 1122,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../index.html');\ncy.viewport(1280, 1080);\ncy.get('#search').click();\ncy.get('#text-search').type('jurassick park');\ncy.get('#Search').click();\ncy.get('#berserkerDivList').should('be.visible');\ncy.get('#berserkerDivList').click();\ncy.get('#popupListId').should('be.visible');\ncy.get('#popupListId').click();\ncy.get('#popupListId').should('not.visible');",
+              "err": {},
+              "uuid": "d8482d73-1134-4e99-9fb5-c410c50731fd",
+              "parentUUID": "38eb23de-6b9e-4b2b-afc6-d18785c21959",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "empty filed seachr",
+              "fullTitle": "Search Test empty filed seachr",
+              "timedOut": null,
+              "duration": 857,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../index.html');\ncy.viewport(1280, 1080);\ncy.get('#search').click();\ncy.get('#text-search').type('jurassick park');\ncy.get('#text-search').clear();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Preencha o campo de pesquisa.');\n});",
+              "err": {},
+              "uuid": "ac447cc0-e0e7-49f7-957f-a9378782e27b",
+              "parentUUID": "38eb23de-6b9e-4b2b-afc6-d18785c21959",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d8482d73-1134-4e99-9fb5-c410c50731fd",
+            "ac447cc0-e0e7-49f7-957f-a9378782e27b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1979,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "b773ab62-74ce-4040-935c-2eab89148d06",
+      "title": "",
+      "fullFile": "cypress\\e2e\\teste_Index.cy.js",
+      "file": "cypress\\e2e\\teste_Index.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7fae00f1-5b5b-44df-820a-0e818a43ced4",
+          "title": "Index Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "check the popups",
+              "fullTitle": "Index Test check the popups",
+              "timedOut": null,
+              "duration": 708,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../index.html');\ncy.get('#img').click();\ncy.get('.popup').should('be.visible');\ncy.get('.popup').click();\ncy.get('.popup').should('not.visible');\ncy.get('#img2').click();\ncy.get('.popup').should('be.visible');\ncy.get('.popup').click();",
+              "err": {},
+              "uuid": "0f1445f4-82a5-4c84-b081-574ca6af0ded",
+              "parentUUID": "7fae00f1-5b5b-44df-820a-0e818a43ced4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "check the change of divs",
+              "fullTitle": "Index Test check the change of divs",
+              "timedOut": null,
+              "duration": 566,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../index.html');\ncy.viewport(1280, 1080);\ncy.get('#search').click();\ncy.get('#search').should('be.visible');\ncy.get('#list').click();\ncy.get('#list').should('be.visible');",
+              "err": {},
+              "uuid": "5cc34a53-8a3b-417c-acc2-988d24a8ae4c",
+              "parentUUID": "7fae00f1-5b5b-44df-820a-0e818a43ced4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0f1445f4-82a5-4c84-b081-574ca6af0ded",
+            "5cc34a53-8a3b-417c-acc2-988d24a8ae4c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1274,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "5117a8d5-f004-4025-b1c5-d344dcb50461",
+      "title": "",
+      "fullFile": "cypress\\e2e\\teste_Login.cy.js",
+      "file": "cypress\\e2e\\teste_Login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "058c86bf-4410-4290-8921-9c5a29c1d90b",
+          "title": "Login test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Sucess",
+              "fullTitle": "Login test Sucess",
+              "timedOut": null,
+              "duration": 2479,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../login_cadastro.html');\ncy.get('#signin').click();\ncy.get('#emailLogin').type('vini@gmail.com');\ncy.get('#passwordLogin').type('1234');\ncy.get('#buttonLogin').click();\ncy.url().then(url => {\n  cy.url().should('include', 'index.html');\n});",
+              "err": {},
+              "uuid": "f2d8d337-4036-4358-b7b5-7ac0d93388dc",
+              "parentUUID": "058c86bf-4410-4290-8921-9c5a29c1d90b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "missing filed",
+              "fullTitle": "Login test missing filed",
+              "timedOut": null,
+              "duration": 1383,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('../../login_cadastro.html');\ncy.get('#signin').click();\ncy.get('#emailLogin').type('vini@gmail.com');\ncy.get('#emailLogin').clear();\ncy.get('#passwordLogin').type('1234');\ncy.get('#buttonLogin').click();\ncy.on('windows:alert', message => {\n  expect(message).to.equal('Preencha este campo');\n});",
+              "err": {},
+              "uuid": "1d20b4c6-9cc0-4490-9313-36f3e7d63132",
+              "parentUUID": "058c86bf-4410-4290-8921-9c5a29c1d90b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f2d8d337-4036-4358-b7b5-7ac0d93388dc",
+            "1d20b4c6-9cc0-4490-9313-36f3e7d63132"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3862,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/report/mochawesome-report",
+        "overwrite": true,
+        "html": false,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

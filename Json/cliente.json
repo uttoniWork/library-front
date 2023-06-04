@@ -1,0 +1,14 @@
+{
+    "cliente": {
+        "email":{
+            "type": "string",
+            "exemplo":"inatel@gec.inatel"
+        },
+        "senha":{
+            "type": "string"
+        },
+        "nome":{
+            "type": "string"
+        }
+    }
+}
