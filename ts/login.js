@@ -12,7 +12,7 @@ btnSignup.addEventListener("click", function () {
 });
 
 function setItem(client){
-    localStorage.setItem(client);
+    localStorage.setItem("cliente",client);
 }
 
 function create() {

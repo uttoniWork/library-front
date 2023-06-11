@@ -1,19 +1,18 @@
+const client = localStorage.getItem("cliente")
 window.onload = function() {
-    findBooksOfClient();
+    document.getElementById("clientName").textContent = client.name
+    findBooksOfClient(client.id);
 };
 
-function getItem(){
-    return localStorage.getItem(client)
-    window.onload
-}
 
 function HideShow(id, inverse_id){
     document.getElementById(id).style.display = 'block';
     document.getElementById(inverse_id).style.display = 'none';
 }
 
-function showRegister(id){
+function showRegister(id, idButton){
     document.getElementById(id).style.display = 'block';
+    document.getElementById(idButton).style.display = 'none';
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,52 +27,81 @@ function searchBooks(idDiv){
 
     findBooksOfTitle()
 }
+const gender = document.querySelectorAll('.options');
+gender.forEach(option => {
+    option.addEventListener('click', () => {
+        gender.forEach(option => {
+            option.classList.remove('selected');
+        });
+        option.classList.add('selected');
+    });
+});
+
+function getValues(){
+    const clientId = 0
+    const title = document.getElementById("book_name").value
+    const author = document.getElementById("autor").value
+    const coverImage = document.getElementById("image").value
+    const editor = document.getElementById("editora").value
+    const releaseYear = document.getElementById("ano").value
+
+    const options = document.querySelectorAll(".options");
+    const selectedOptions = Array.from(options).filter(option => option.getAttribute("aria-selected") === "true");
+    const selectedOptionsString = [];
+    selectedOptions.forEach(elemento =>{
+        const valor = elemento.textContent;
+        selectedOptionsString.push(valor);
+    })
+
+    console.log(selectedOptionsString);
+    console.log(selectedOptions);
+
+
+    var clientRequest = {
+        "clientId": clientId,
+        "title": title,
+        "author": author,
+        "coverImage": coverImage,
+        "genres": selectedOptionsString,
+        "editor": editor,
+        "releaseYear": releaseYear
+    };
+
+
+    return clientRequest
+}
+
 
 function validaCampo(){
 
     var title = document.getElementById("book_name").value
     var author = document.getElementById("autor").value
     var coverImage = document.getElementById("image").value
-    var genre = document.getElementById("genero").value
     var editor = document.getElementById("editora").value
     var releaseYear = document.getElementById("ano").value
 
     console.log("validando campos");
 
-    if (title !== '' && author !== '' && coverImage !== '' && genre !== '' && editor !== '' && releaseYear !== ''){
+    if (title !== '' && author !== '' && coverImage !== '' && editor !== '' && releaseYear !== ''){
         return;
     }
 }
 
 function createBook(){
 
-    validaCampo()
+    if(validaCampo()){
+        return window.alert("campos invalidos");
+    }
 
     console.log("campos validados");
-
+    console.log(getValues())
     let url = 'http://localhost:15000/book';
 
     var form = document.getElementById("createForm");
     form === null || form === void 0 ? void 0 : form.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const clientId = 0
-        const title = document.getElementById("book_name").value
-        const author = document.getElementById("autor").value
-        const coverImage = document.getElementById("image").value
-        const genre = document.getElementById("genero").value
-        const editor = document.getElementById("editora").value
-        const releaseYear = document.getElementById("ano").value
-
-        var clientRequest = {
-            "clientId": clientId,
-            "title": title,
-            "author": author,
-            "coverImage": coverImage,
-            "genres": [genre],
-            "editor": editor,
-            "releaseYear": releaseYear
-        };
+        const clientRequest = getValues()
 
         console.log("creating")
 
@@ -87,21 +115,20 @@ function createBook(){
         })
             .then(response => {
                 console.log("created")
+                showRegister('cadButton','content')
                 response.json();
             })
     });
 
-    alert("Livro cadastrado");
+   // alert("Livro cadastrado");
 
 }
 
 var clientBookList = []
 
 //lista livros do cliente, deve ser carregado assim q a pagina carrega pra montar a lista de livros do cliente
-function findBooksOfClient(){
+function findBooksOfClient(clientId){
     
-    const clientId = 0;
-
     let url = 'http://localhost:15000/book?clientId=' + clientId;
 
     console.log("buscando livros")
@@ -248,3 +275,15 @@ function addBookToClient(){
         body: JSON.stringify(clientBookRequest)
     }) 
 }
+// ------------------------------   GENDERS ---------------------------------------
+//-------------------------------   ALTERA  ---------------------------------------
+// Selecionando todos os elementos de opção
+const options = document.querySelectorAll(".options");
+// Adicionando um evento de escuta a cada elemento de opção
+options.forEach(option => {
+    option.addEventListener("click", function() {
+        // Alterando o valor do atributo aria-selected para o elemento clicado
+        const gender = option.getAttribute("aria-selected") === "true";
+        option.setAttribute("aria-selected",!gender);
+    });
+});

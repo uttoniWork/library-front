@@ -27,7 +27,7 @@
         <nav id="navbar" class="nav-menu navbar">
           <ul>
             <li><a id="list" href="#" class="nav-link scrollto" onclick="HideShow('container-list','container-search')">
-            <span>Minha lista</span></a></li>
+            <span >Minha lista</span></a></li>
   
             <li><a id="search" class="nav-link scrollto" onclick="HideShow('container-search','container-list')">
             <span id="search-button">Pesquisar</span></a></li>
@@ -49,14 +49,6 @@
           <div class="galery">
             <ul id="client-book-list">
             </ul>
-    
-            <div id="popupId" class = "popup" >
-              <img id="popup-image"
-                width="300"
-                height="300"
-                src="">
-              <div id="popup-title"></div>
-            </div>
           </div>
         </div>
       </section>
@@ -65,21 +57,18 @@
       <section id="busca_busca" class="busca">
         <div id="container-search"class="container">
     
+          <div class="section-title">
+            <h2>Pesquisa</h2>
+          </div>
+
           <div class="search-bar" style="margin-bottom: 50px;">
             <input id="text-search" type="text" required="True" placeholder="Digite sua pesquisa">
-              <button id="search_title" type="submit" onclick="findBooksSearched()">Pesquisar</button>
+              <button id="search_title" type="submit" onclick="findBooksOfTitle()">Pesquisar</button>
           </div>
     
           <div id="Found"class="found">
             <ul id="search-book-list">
             </ul>
-            <div id="popupListId" style="position: absolute;"class = "popupList">
-              <img id="popup-image-list"
-                width="300"
-                height="300"
-                src="">
-                <div id="popup-title-list"></div>
-            </div>
           </div>
     
           <div id="not-found" class="not-found">
@@ -87,15 +76,16 @@
               <h4>Livro nao encontrado? deseja cadastrar?</h4>
             </div>
     
-            <div class="button" style="align-items: center;">
-              <button id="cadButton" class="btnCadastrar" type="submit" onclick="showRegister('content')">Cadastrar?</button>
+            <div class="button">
+              <button id="cadButton" class="btnCadastrar" type="submit" onclick="showRegister('content','cadButton')">Cadastrar?</button>
             </div>
     
             <div id="content" class="register-content" style="display: none;">
               <form class="" id="createForm">
+
                 <div class="input-book">
                   <div id="createBook" class="form-group">
-    
+                    
                     <div class="book-detail">
                       <label for="book_name" class="respostaUm">Nome:
                         <input type="text" id="book_name" required="True" class="respostaDois">
@@ -115,26 +105,6 @@
                     </div>
     
                     <div class="book-detail">
-                      <label for="genero" class="respostaUm">Generos:
-                        <br>
-                        <label>
-                          <input type="checkbox" name="option" value="option1">
-                          Option 1
-                        </label>
-                        
-                        <label>
-                          <input type="checkbox" name="option" value="option2">
-                          Option 2
-                        </label>
-                        
-                        <label>
-                          <input type="checkbox" name="option" value="option3">
-                          Option 3
-                        </label>
-                      </label>
-                    </div>
-    
-                    <div class="book-detail">
                       <label for="editora" class="respostaUm">Editora:
                         <input type="text" id="editora"  class="respostaDois">
                       </label>
@@ -145,11 +115,44 @@
                         <input type="text" id="ano" class="respostaDois" >
                       </label>
                     </div>
-    
-                    <div class="button">
-                      <button id="bookCreate"type="submit" class="btnCadastrar" onclick="createBook()">Cadastrar</button>
-                    </div>
+                    
                   </div>
+                  <div>
+                    <div class="options-title">
+                      <h7 id="openPopup">Generos</h7>
+                      <p>Escolha até 3</p>
+                    </div>
+                    <div id="options-container"class="options-container" role="listbox">
+                      <div class="options" role="option" aria-selected="false">Ficção científica</div>
+                      <div class="options" role="option" aria-selected="false">Fantasia</div>
+                      <div class="options" role="option" aria-selected="false">Infantil</div>
+                      <div class="options" role="option" aria-selected="false">Aventura</div>
+                      <div class="options" role="option" aria-selected="false">Drama</div>
+                      <div class="options" role="option" aria-selected="false">Romance</div>
+                      <div class="options" role="option" aria-selected="false">Clássico</div>
+                      <div class="options" role="option" aria-selected="false">Suspense</div>
+                      <div class="options" role="option" aria-selected="false">Terror</div>
+                      <div class="options" role="option" aria-selected="false">Comédia</div>
+                      <div class="options" role="option" aria-selected="false">Crônica</div>
+                      <div class="options" role="option" aria-selected="false">Ficção religiosa</div>
+                      <div class="options" role="option" aria-selected="false">Mistério</div>
+                      <div class="options" role="option" aria-selected="false">Magia</div>
+                      <div class="options" role="option" aria-selected="false">Histórico</div>
+                      <div class="options" role="option" aria-selected="false">LGBTQ+</div>
+                      <div class="options" role="option" aria-selected="false">Biografia</div>
+                      <div class="options" role="option" aria-selected="false">Naturalismo</div>
+                      <div class="options" role="option" aria-selected="false">Literatura brasileira</div>
+                      <div class="options" role="option" aria-selected="false">Modernista</div>
+                      <div class="options" role="option" aria-selected="false">Existencialismo</div>
+                      <div class="options" role="option" aria-selected="false">Conto</div>
+                      <div class="options" role="option" aria-selected="false">Crime</div>
+                      <div class="options" role="option" aria-selected="false">Paranormal</div>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="button">
+                  <button id="bookCreate"type="submit" class="btnCadastrar" onclick="createBook()">Cadastrar</button>
                 </div>
               </form>
             </div>
