@@ -612,3 +612,38 @@ h6 {
   align-items: center;
   left: 505px;
 }
+.createBook{
+  overflow: auto;
+}
+
+
+.options-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  grid-gap: 10px;
+}
+
+.options {
+  margin: auto;
+  padding: 8px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+}
+.options:hover {
+  background-color: cadetblue;
+  color: white;
+  transition: 1s;
+
+}
+.options[aria-selected="true"] {
+  border: 2px solid red;
+  background-color: cadetblue;
+  color: white;
+}
+
+.button{
+  align-items: center;
+}
