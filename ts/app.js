@@ -1,9 +1,18 @@
-const client = localStorage.getItem("cliente")
-window.onload = function() {
-    document.getElementById("clientName").textContent = client.name
-    findBooksOfClient(client.id);
-};
+var clientLogged = null;
 
+document.addEventListener("DOMContentLoaded", function() {
+    var clientData  = localStorage.getItem("client");
+    if (clientData ) {
+        var client = JSON.parse(clientData);
+        clientLogged = client
+        console.log(client);
+    }
+});
+
+window.onload = function() {
+    document.getElementById("clientName").textContent = clientLogged.userName
+    findBooksOfClient(clientLogged.clientId);
+};
 
 function HideShow(id, inverse_id){
     document.getElementById(id).style.display = 'block';
@@ -25,7 +34,7 @@ function searchBooks(idDiv){
         window.alert("Preencha o campo de pesquisa")
     }
 
-    findBooksOfTitle()
+    findBooksSearched()
 }
 const gender = document.querySelectorAll('.options');
 gender.forEach(option => {
@@ -208,6 +217,10 @@ function findBooksSearched(){
 
         var list = document.getElementById("search-book-list")
 
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
+        }
+
         console.log("criando container")
 
         json.forEach(function(book) {
@@ -215,6 +228,7 @@ function findBooksSearched(){
             console.log(book)
 
             var li = document.createElement("li")
+            li.style.listStyleType = 'none';
             var container = document.createElement("div")
 
             var img = document.createElement("img")
@@ -232,8 +246,8 @@ function findBooksSearched(){
             genres.textContent = book.genres.map(obj => obj.genreName).join(", ");
 
             var addButton = document.createElement("button")
-            addButton.textContent="ADD"
-            addButtton.onclick="addBookToClient()"
+            addButton.textContent = "ADD"
+            addButton.onclick = addBookToClient(book.bookId)
 
             container.appendChild(img)
             container.appendChild(title)
@@ -241,6 +255,7 @@ function findBooksSearched(){
             container.appendChild(editor)
             container.appendChild(releaseYear)
             container.appendChild(genres)
+            container.appendChild(addButton)
 
             li.appendChild(container)
             list.appendChild(li)
@@ -252,12 +267,11 @@ function findBooksSearched(){
 
 //Chamado pelo botão de + quando for adicionar um livro q já existe à lista do cliente
 //padraoADD
-function addBookToClient(){
+function addBookToClient(bookId){
 
     let url = 'http://localhost:15000/book/choose';
 
-    const clientId = 4
-    const bookId = 2
+    const clientId = clientLogged.clientId
 
     var clientBookRequest = {
         "clientId": clientId,

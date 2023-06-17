@@ -11,8 +11,8 @@ btnSignup.addEventListener("click", function () {
     body.className = "sign-up-js";
 });
 
-function setItem(client){
-    localStorage.setItem("cliente",client);
+function setClient(client){
+    localStorage.setItem("client", JSON.stringify(client));
 }
 
 function create() {
@@ -69,15 +69,16 @@ function login() {
         })
             .then(response =>  response.json())
             .then((json) => {
-                setItem(json);
-                window.location.replace('./index.html');
+                console.log(json);
+                setClient(json);
 
+                window.location.href = './home';
             })
     });
 
-    if(verificaCamposLogin() === true){
-        window.location.replace('./index.html');
-    }
+    //if(verificaCamposLogin() === true){
+   //     window.location.replace('./index.html');
+    //}
 
 }
 
