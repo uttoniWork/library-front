@@ -80,21 +80,22 @@ function validaCampo(){
     var editor = document.getElementById("editora").value
     var releaseYear = document.getElementById("ano").value
 
-    console.log("validando campos");
+   
 
     if (title !== '' && author !== '' && coverImage !== '' && editor !== '' && releaseYear !== ''){
-        return;
+        console.log("validando campos");
+        return true;
     }
+
 }
 
 function createBook(){
 
-    if(validaCampo()){
+    if(!validaCampo()){
         return window.alert("campos invalidos");
     }
 
     console.log("campos validados");
-    console.log(getValues())
     let url = 'http://localhost:15000/book';
 
     var form = document.getElementById("createForm");
@@ -102,6 +103,7 @@ function createBook(){
         event.preventDefault();
 
         const clientRequest = getValues()
+        console.log(clientRequest);
 
         console.log("creating")
 
