@@ -11,7 +11,7 @@ app.use(cors());
 const requestHandler = (request, response) => {
   let filePath = '.' + request.url;
 
-  if (filePath === './') {
+  if (filePath === './home') {
     filePath = './index.html';
   }
 
