@@ -19,26 +19,27 @@ h5,
 h6 {
   font-family: "Raleway", sans-serif;
 }
+container{
+  display: flex;
+}
 
 
 /*--------------------------------------------------------------
   # Header
   --------------------------------------------------------------*/
-  #header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 200px;
-    transition: all ease-in-out 0.5s;
-    z-index: 9999;
-    transition: all 0.5s;
-    padding: 0 15px;
-    background:  #58af9b;
-    overflow-y: auto;
-    padding-top: 1cm;
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  transition: all ease-in-out 0.5s;
+  z-index: 9997;
+  transition: all 0.5s;
+  padding: 0 15px;
+  background:  #58af9b;
+  overflow-y: auto;
 }
-
   #header .profile h1 {
     font-size: 24px;
     margin: 0;
@@ -183,6 +184,15 @@ h6 {
   display: block;
   margin: 0 auto;
 }
+
+.section-title h4 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #173b6c;
+}
+
 
 .section-title p {
   margin-bottom: 0;
@@ -460,7 +470,29 @@ h6 {
   background-color: cadetblue;
   color: white;
 }
-
-.button{
+.options-title{
+  display: flex;
+  justify-content: center;
+  height: auto;
   align-items: center;
+}
+.button{
+  display: flex;
+  justify-content: center;
+  height: auto;
+  align-items: center;
+}
+
+.spinner{
+  display: none;
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #58af9b;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+}
+@keyframes spin {
+  to { transform: rotate(360deg);}  
 }

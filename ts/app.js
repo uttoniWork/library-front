@@ -91,8 +91,10 @@ function validaCampo(){
    
 
     if (title !== '' && author !== '' && coverImage !== '' && editor !== '' && releaseYear !== ''){
-        console.log("validando campos");
+        console.log("campos validados");
         return true;
+    }else{
+        return false
     }
 
 }
@@ -103,16 +105,15 @@ function createBook(){
         return window.alert("campos invalidos");
     }
 
-    console.log("campos validados");
+
     let url = 'http://localhost:15000/book';
 
     var form = document.getElementById("createForm");
     form === null || form === void 0 ? void 0 : form.addEventListener("submit", function (event) {
         event.preventDefault();
-
+        
+        document.getElementById("spinner").style.display = 'flex';
         const clientRequest = getValues()
-        console.log(clientRequest);
-
         console.log("creating")
 
         fetch(url, {
@@ -125,8 +126,10 @@ function createBook(){
         })
             .then(response => {
                 console.log("created")
+                window.alert("created")
                 showRegister('cadButton','content')
                 response.json();
+                document.getElementById("spinner").style.display = 'none';
             })
     });
 
@@ -176,14 +179,19 @@ function findBooksOfClient(){
             var img = document.createElement("img")
             img.style.height="250px"
             img.src = book.coverImage
+
             var title = document.createElement("figcaption")
             title.textContent = book.title
+
             var author = document.createElement("figcaption")
             author.textContent = book.author
+
             var editor = document.createElement("figcaption")
             editor.textContent = book.editor
+
             var releaseYear = document.createElement("figcaption")
             releaseYear.textContent = book.releaseYear
+
             var genres = document.createElement("figcaption")
             genres.textContent = book.genres.map(obj => obj.genreName).join(", ");
 
@@ -242,6 +250,7 @@ function findBooksSearched(){
             var img = document.createElement("img")
             img.style.height="250px"
             img.src = book.coverImage
+            
             var title = document.createElement("figcaption")
             title.textContent = book.title
             var author = document.createElement("figcaption")

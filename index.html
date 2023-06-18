@@ -48,6 +48,7 @@
         <div id="container-home" class="container" style="align-items: center;">
           <div class="section-title">
             <h2>Home</h2>
+            <h4>Lista de recomendação de livros</h4>
           </div>
     
           <div class="galery">
@@ -56,8 +57,8 @@
           </div>
         </div>
       </section>
-  
-      
+
+
       <section id="listar" class="listar">
         <div id="container-list" class="container" style="align-items: center;">
           <div class="section-title">
@@ -91,7 +92,11 @@
     
           <div id="not-found" class="not-found">
             <div style="align-items: center; opacity: 0.3; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-              <h4>Livro nao encontrado? deseja cadastrar?</h4>
+              <h4 style="
+                 display: flex;
+                 justify-content: center;
+                 height: auto;
+                 align-items: center;">Livro nao encontrado? deseja cadastrar?</h4>
             </div>
     
             <div class="button">
@@ -137,7 +142,7 @@
                   </div>
                   <div>
                     <div class="options-title">
-                      <h7 id="openPopup">Generos</h7>
+                      <h7 id="openPopup"><B>Generos</B></h7>
                     </div>
                     <div id="options-container"class="options-container" role="listbox">
                       <div class="options" role="option" aria-selected="false">Ficção científica</div>
@@ -168,10 +173,12 @@
                     
                   </div>
                 </div>
-                <div class="button">
-                  <button id="bookCreate"type="submit" class="btnCadastrar" onclick="createBook()">Cadastrar</button>
-                </div>
+                <div style="height: 10px; height: 10px;"></div>
               </form>
+              <div class="button">
+                <button id="bookCreate"type="submit" class="btnCadastrar" onclick="createBook()">Cadastrar</button>
+                <div id="spinner" class="spinner"></div>
+              </div>
             </div>
           </div>
         </div>
