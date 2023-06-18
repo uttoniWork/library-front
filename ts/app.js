@@ -14,9 +14,10 @@ window.onload = function() {
     findBooksOfClient();
 };
 
-function HideShow(id, inverse_id){
-    document.getElementById(id).style.display = 'block';
-    document.getElementById(inverse_id).style.display = 'none';
+function HideShow(primeiroId, segundoId,terceiroId){
+    document.getElementById(primeiroId).style.display = 'block';
+    document.getElementById(segundoId).style.display = 'none';
+    document.getElementById(terceiroId).style.display = 'none';
 }
 
 function showRegister(id, idButton){

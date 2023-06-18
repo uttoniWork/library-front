@@ -276,6 +276,9 @@ h6 {
 #container-search{
   display: none;
 }
+#container-list{
+  display: none;
+}
 
 
 .form-group {
