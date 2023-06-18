@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 window.onload = function() {
     document.getElementById("clientName").textContent = clientLogged.userName
-    findBooksOfClient(clientLogged.clientId);
+    findBooksOfClient();
 };
 
 function HideShow(id, inverse_id){
@@ -47,7 +47,7 @@ gender.forEach(option => {
 });
 
 function getValues(){
-    const clientId = 0
+    const clientId = clientLogged.clientId
     const title = document.getElementById("book_name").value
     const author = document.getElementById("autor").value
     const coverImage = document.getElementById("image").value
@@ -65,7 +65,6 @@ function getValues(){
     console.log(selectedOptionsString);
     console.log(selectedOptions);
 
-
     var clientRequest = {
         "clientId": clientId,
         "title": title,
@@ -75,7 +74,6 @@ function getValues(){
         "editor": editor,
         "releaseYear": releaseYear
     };
-
 
     return clientRequest
 }
@@ -138,7 +136,9 @@ function createBook(){
 var clientBookList = []
 
 //lista livros do cliente, deve ser carregado assim q a pagina carrega pra montar a lista de livros do cliente
-function findBooksOfClient(clientId){
+function findBooksOfClient(){
+
+    var clientId = clientLogged.clientId
     
     let url = 'http://localhost:15000/book?clientId=' + clientId;
 
@@ -158,6 +158,10 @@ function findBooksOfClient(clientId){
 
         var list = document.getElementById("client-book-list")
 
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
+        }
+
         console.log("criando container")
 
         json.forEach(function(book) {
@@ -165,6 +169,7 @@ function findBooksOfClient(clientId){
             console.log(book)
 
             var li = document.createElement("li")
+            li.style.listStyleType = 'none';
             var container = document.createElement("div")
 
             var img = document.createElement("img")
