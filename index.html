@@ -26,10 +26,13 @@
   
         <nav id="navbar" class="nav-menu navbar">
           <ul>
-            <li><a id="list" href="#" class="nav-link scrollto" onclick="HideShow('container-list','container-search'); findBooksOfClient();">
+            <li><a href="#" id="Home" class="nav-link scrollto" onclick="HideShow('container-home','container-search','container-list')">
+            <span id="search-button">Home</span></a></li>
+
+            <li><a id="list" href="#" class="nav-link scrollto" onclick="HideShow('container-list','container-search','container-home'); findBooksOfClient();">
             <span >Minha lista</span></a></li>
   
-            <li><a href="#" id="search" class="nav-link scrollto" onclick="HideShow('container-search','container-list')">
+            <li><a href="#" id="search" class="nav-link scrollto" onclick="HideShow('container-search','container-list','container-home')">
             <span id="search-button">Pesquisar</span></a></li>
           </ul>
         </nav>
@@ -40,6 +43,21 @@
   
   
     <main class="main">
+
+      <section id="home" class="home">
+        <div id="container-home" class="container" style="align-items: center;">
+          <div class="section-title">
+            <h2>Home</h2>
+          </div>
+    
+          <div class="galery">
+            <ul id="client-book-list">
+            </ul>
+          </div>
+        </div>
+      </section>
+  
+      
       <section id="listar" class="listar">
         <div id="container-list" class="container" style="align-items: center;">
           <div class="section-title">
