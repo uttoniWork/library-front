@@ -235,8 +235,10 @@ function findBooksSearched(){
 
         var list = document.getElementById("search-book-list")
 
-        while (list.firstChild) {
-            list.removeChild(list.firstChild);
+        if(list.firstChild != null){
+            while (list.firstChild) {
+                list.removeChild(list.firstChild);
+            }
         }
 
         console.log("criando container")
@@ -314,8 +316,10 @@ function findBooksRecomended(){
 
         var list = document.getElementById("recomendation-book-list")
 
-        while (list.firstChild) {
-            list.removeChild(list.firstChild);
+        if(list.firstChild != null){
+            while (list.firstChild) {
+                list.removeChild(list.firstChild);
+            }
         }
 
         console.log("criando container")
@@ -327,20 +331,27 @@ function findBooksRecomended(){
             var li = document.createElement("li")
             li.style.listStyleType = 'none';
             var container = document.createElement("div")
+            container.classList.add("bookList")
 
             var img = document.createElement("img")
             img.style.height="250px"
             img.src = book.coverImage
-            var title = document.createElement("figcaption")
+
+            var title = document.createElement("h4")
             title.textContent = book.title
-            var author = document.createElement("figcaption")
-            author.textContent = book.author
-            var editor = document.createElement("figcaption")
-            editor.textContent = book.editor
-            var releaseYear = document.createElement("figcaption")
-            releaseYear.textContent = book.releaseYear
-            var genres = document.createElement("figcaption")
-            genres.textContent = book.genres.map(obj => obj.genreName).join(", ");
+
+            var author = document.createElement("p")
+            author.textContent = "Autor: " + book.author
+
+            var editor = document.createElement("p")
+            editor.textContent =  "Editora: " +book.editor
+
+            var releaseYear = document.createElement("p")
+            releaseYear.textContent =  "Lançamento: " +book.releaseYear
+
+            var genres = document.createElement("p")
+            genres.textContent =  "Generos: " + book.genres.map(obj => obj.genreName).join(", ");
+            console.log("GENRES: ",  book.genres.map(obj => obj.genreName).join(", ") )
 
             container.appendChild(img)
             container.appendChild(title)
