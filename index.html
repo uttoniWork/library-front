@@ -52,7 +52,7 @@
           </div>
     
           <div class="galery">
-            <ul id="client-book-list">
+            <ul id="book-list">
             </ul>
           </div>
         </div>
@@ -64,17 +64,19 @@
           <div class="section-title">
             <h2>Minha lista</h2>
           </div>
-    
+    <!-- --------------------------------------------- -->
           <div class="galery">
             <ul id="client-book-list">
             </ul>
           </div>
         </div>
+  <!-- --------------------------------------------- -->
+
       </section>
   
   
       <section id="busca_busca" class="busca">
-        <div id="container-search"class="container">
+        <div id="container-search"class="container"style="align-items: center;">
     
           <div class="section-title">
             <h2>Pesquisa</h2>
@@ -84,12 +86,17 @@
             <input id="text-search" type="text" required="True" placeholder="Digite sua pesquisa">
               <button id="search_title" type="submit" onclick="findBooksSearched()">Pesquisar</button>
           </div>
-    
-          <div id="Found"class="found">
+      <!-- --------------------------------------------- -->
+
+
+          <div id="Found"class="galery">
             <ul id="search-book-list">
             </ul>
           </div>
-    
+      <!-- --------------------------------------------- -->
+
+
+
           <div id="not-found" class="not-found">
             <div style="align-items: center; opacity: 0.3; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
               <h4 style="
@@ -173,7 +180,7 @@
                     
                   </div>
                 </div>
-                <div style="height: 10px; height: 10px;"></div>
+                <div style="height: 20px;"></div>
               </form>
               <div class="button">
                 <button id="bookCreate"type="submit" class="btnCadastrar" onclick="createBook()">Cadastrar</button>
@@ -183,8 +190,7 @@
           </div>
         </div>
       </section>
-
-
+      <div style="height: 10px;">
     </main>
   
   </div>
