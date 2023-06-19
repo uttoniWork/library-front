@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 window.onload = function() {
     document.getElementById("clientName").textContent = clientLogged.userName
-    findBooksOfClient();
+    findBooksRecomended();
 };
 
 function HideShow(primeiroId, segundoId,terceiroId){
@@ -283,6 +283,71 @@ function findBooksSearched(){
             container.appendChild(releaseYear)
             container.appendChild(genres)
             container.appendChild(addButton)
+
+            li.appendChild(container)
+            list.appendChild(li)
+
+            console.log("container criado com imagem")
+        })
+    })
+}
+
+function findBooksRecomended(){
+
+    var clientId = clientLogged.clientId
+    
+    let url = 'http://localhost:15000/book/recomend?clientId=' + clientId;
+
+    console.log("buscando livros RECOMENDADOS")
+
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log("Found")
+        console.log(json)
+
+        var list = document.getElementById("recomendation-book-list")
+
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
+        }
+
+        console.log("criando container")
+
+        json.forEach(function(book) {
+
+            console.log(book)
+
+            var li = document.createElement("li")
+            li.style.listStyleType = 'none';
+            var container = document.createElement("div")
+
+            var img = document.createElement("img")
+            img.style.height="250px"
+            img.src = book.coverImage
+            var title = document.createElement("figcaption")
+            title.textContent = book.title
+            var author = document.createElement("figcaption")
+            author.textContent = book.author
+            var editor = document.createElement("figcaption")
+            editor.textContent = book.editor
+            var releaseYear = document.createElement("figcaption")
+            releaseYear.textContent = book.releaseYear
+            var genres = document.createElement("figcaption")
+            genres.textContent = book.genres.map(obj => obj.genreName).join(", ");
+
+            container.appendChild(img)
+            container.appendChild(title)
+            container.appendChild(author)
+            container.appendChild(editor)
+            container.appendChild(releaseYear)
+            container.appendChild(genres)
 
             li.appendChild(container)
             list.appendChild(li)
