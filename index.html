@@ -26,14 +26,17 @@
   
         <nav id="navbar" class="nav-menu navbar">
           <ul>
-            <li><a href="#" id="home" class="nav-link scrollto" onclick="HideShow('container-home','container-search','container-list')">
+            <li><a href="#" id="home" class="nav-link scrollto" onclick="HideShow('container-home','container-search','container-list'); findBooksRecomended()">
             <span id="search-button">Home</span></a></li>
 
             <li><a id="minha-lista" href="#" class="nav-link scrollto" onclick="HideShow('container-list','container-search','container-home'); findBooksOfClient();">
             <span >Minha lista</span></a></li>
   
-            <li><a href="#" id="search" class="nav-link scrollto" onclick="HideShow('container-search','container-list','container-home')">
+            <li><a href="#" id="search" class="nav-link scrollto" onclick="HideShow('container-search','container-list','container-home'); cleanSearches()">
             <span id="search-button">Pesquisar</span></a></li>
+
+            <li><a href="#" id="leave" class="nav-link scrollto" onclick="logOff()">
+              <span id="search-button">Sair</span></a></li>
           </ul>
         </nav>
       </header>

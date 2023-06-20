@@ -2,14 +2,23 @@ var clientLogged = null;
 
 document.addEventListener("DOMContentLoaded", function() {
     var clientData  = localStorage.getItem("client");
-    if (clientData ) {
+    clientLogged = null;
+
+    if (clientData) {
         var client = JSON.parse(clientData);
         clientLogged = client
         console.log(client);
     }
+
+    if(clientLogged==null){
+        window.location.href = './cadastro';
+    }
 });
 
 window.onload = function() {
+    if(clientLogged == null){
+        window.location.href = './cadastro';
+    }
     document.getElementById("clientName").textContent = clientLogged.userName
     findBooksRecomended();
 };
@@ -26,6 +35,12 @@ function showRegister(id, idButton){
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
+
+function logOff(){
+    localStorage.setItem("client", null);
+    window.location.href = './cadastro';
+}
+
 function searchBooks(idDiv){
     var campo = document.getElementById("text-search");
     if (campo.value !== "") {
@@ -88,8 +103,6 @@ function validaCampo(){
     var editor = document.getElementById("editora").value
     var releaseYear = document.getElementById("ano").value
 
-   
-
     if (title !== '' && author !== '' && coverImage !== '' && editor !== '' && releaseYear !== ''){
         console.log("campos validados");
         return true;
@@ -101,41 +114,33 @@ function validaCampo(){
 
 function createBook(){
 
+    console.log("tentando")
+
     if(!validaCampo()){
-        return window.alert("campos invalidos");
+        window.alert("Preencha todos os campos")
+        return
     }
 
-
     let url = 'http://localhost:15000/book';
-
-    var form = document.getElementById("createForm");
-    form === null || form === void 0 ? void 0 : form.addEventListener("submit", function (event) {
-        event.preventDefault();
         
-        console.log("finder spiner")
-        document.getElementById("spinner").style.display = 'flex';
-        const clientRequest = getValues()
-        console.log("creating")
+    console.log("finder spiner")
+    document.getElementById("spinner").style.display = 'flex';
+    const clientRequest = getValues()
+    console.log("creating")
 
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                // 'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(clientRequest)
-        })
-            .then(response => {
-                console.log("created")
-                window.alert("created")
-                showRegister('cadButton','content')
-                response.json();
-                document.getElementById("spinner").style.display = 'none';
-            })
-    });
-
-   // alert("Livro cadastrado");
-
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(clientRequest)
+    })
+    .then(response => {
+        console.log("created")
+        showRegister('cadButton','content')
+        response.json();
+        document.getElementById("spinner").style.display = 'none';
+    })
 }
 
 var clientBookList = []
@@ -291,6 +296,11 @@ function findBooksSearched(){
 
             console.log("container criado com imagem")
         })
+
+        if(json == null){
+            var notFound = document.getElementById("not-found");
+            notFound.style.display = "block";
+        }
     })
 }
 
@@ -353,12 +363,20 @@ function findBooksRecomended(){
             genres.textContent =  "Generos: " + book.genres.map(obj => obj.genreName).join(", ");
             console.log("GENRES: ",  book.genres.map(obj => obj.genreName).join(", ") )
 
+            var addButton = document.createElement("button")
+            addButton.classList.add("searchListButton")
+            addButton.textContent = "Adicionar a lista"
+            addButton.onclick = function() {
+               addBookToClient(book.bookId);
+            };
+
             container.appendChild(img)
             container.appendChild(title)
             container.appendChild(author)
             container.appendChild(editor)
             container.appendChild(releaseYear)
             container.appendChild(genres)
+            container.appendChild(addButton)
 
             li.appendChild(container)
             list.appendChild(li)
@@ -392,6 +410,21 @@ function addBookToClient(bookId){
         body: JSON.stringify(clientBookRequest)
     }) 
 }
+
+function cleanSearches(){
+
+    var list = document.getElementById("search-book-list")
+
+    if(list.firstChild != null){
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
+        }
+    }
+
+    var notFound = document.getElementById("not-found");
+    notFound.style.display = "none";
+}
+
 // ------------------------------   GENDERS ---------------------------------------
 //-------------------------------   ALTERA  ---------------------------------------
 // Selecionando todos os elementos de opção
