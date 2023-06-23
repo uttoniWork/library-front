@@ -83,12 +83,14 @@ h6 {
   --------------------------------------------------------------*/
   .nav-menu {
     align-items: center;
+    top: 3px;
     padding: 30px 0 0 0;
     padding-top: 10px;
   }
 
   
   .nav-menu * {
+    top: 5px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -428,24 +430,11 @@ h6 {
   align-items: center;
 }
 
-.spinner{
-  display: none;
-  border: 8px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #58af9b;
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-
-}
-@keyframes spin {
-  to { transform: rotate(360deg);}  
-}
-
 
 .bookList{
+  display: inline;
   position: flex;
-  height: 500px;
+  height: auto;
   justify-content: space-between;
   align-items: center;
 }
@@ -454,6 +443,7 @@ h6 {
 }
 
 .searchList{
+  display: inline;
   position: flex;
   height: auto;
   justify-content: center;
@@ -479,4 +469,43 @@ h6 {
   color: white;
   transition: 1s;
 
+}
+
+
+.spiner{
+
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #58af9b;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+}
+@keyframes spin {
+  to { transform: rotate(360deg);}  
+}
+
+
+.reload-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #58af9b;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50%;
+  color: white;
+}
+
+.arrow-icon {
+  margin-left: 5px;
 }

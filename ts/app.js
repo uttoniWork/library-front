@@ -1,3 +1,4 @@
+
 var clientLogged = null;
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -32,6 +33,8 @@ function HideShow(primeiroId, segundoId,terceiroId){
 function showRegister(id, idButton){
     document.getElementById(id).style.display = 'block';
     document.getElementById(idButton).style.display = 'none';
+    var list = document.getElementById("search-book-list");
+    list.style.display = 'none';
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,6 +80,11 @@ function getValues(){
         const valor = elemento.textContent;
         selectedOptionsString.push(valor);
     })
+    if(selectedOptionsString.length < 1){
+        window.alert("Selecione 1 genero!")
+        console.log("Generos vazios")
+        return
+    }
 
     console.log(selectedOptionsString);
     console.log(selectedOptions);
@@ -120,13 +128,15 @@ function createBook(){
         window.alert("Preencha todos os campos")
         return
     }
-
+    var spin = document.getElementById("spinner");
+    spin.style.display = 'flex ';
     let url = 'http://localhost:15000/book';
         
     console.log("finder spiner")
-    document.getElementById("spinner").style.display = 'flex';
-    const clientRequest = getValues()
+
     console.log("creating")
+    const clientRequest = getValues()
+    
 
     fetch(url, {
         method: 'POST',
@@ -136,23 +146,21 @@ function createBook(){
         body: JSON.stringify(clientRequest)
     })
     .then(response => {
-        console.log("created")
         showRegister('cadButton','content')
         response.json();
-        document.getElementById("spinner").style.display = 'none';
+        spin.style.display = 'none';
     })
 }
 
 var clientBookList = []
 
 //lista livros do cliente, deve ser carregado assim q a pagina carrega pra montar a lista de livros do cliente
-function findBooksOfClient(){
+function findBooksOfClient() {
+    var clientId = clientLogged.clientId;
 
-    var clientId = clientLogged.clientId
-    
     let url = 'http://localhost:15000/book?clientId=' + clientId;
 
-    console.log("buscando livros")
+    console.log("buscando livros");
 
     fetch(url, {
         method: 'GET',
@@ -163,68 +171,77 @@ function findBooksOfClient(){
     })
     .then(response => response.json())
     .then(json => {
-        console.log("Found")
-        console.log(json)
+        console.log("Found");
+        console.log(json);
 
-        var list = document.getElementById("client-book-list")
+        var list = document.getElementById("client-book-list");
 
         while (list.firstChild) {
             list.removeChild(list.firstChild);
         }
 
-        console.log("criando container")
+        console.log("criando container");
 
         json.forEach(function(book) {
-
-            console.log(book)
-
-            var li = document.createElement("li")
+            var li = document.createElement("li");
             li.style.listStyleType = 'none';
-            var container = document.createElement("div")
-            container.classList.add("bookList")
+            var container = document.createElement("div");
+            container.classList.add("bookList");
+            container.style.display = "inline-block";
+            container.style.margin = "10px 0";
 
-            var img = document.createElement("img")
-            img.style.height="250px"
-            img.src = book.coverImage
+            var img = document.createElement("img");
+            img.style.height = "250px";
+            img.src = book.coverImage;
 
-            var title = document.createElement("h4")
-            title.textContent = book.title
+            var title = document.createElement("h4");
+            title.textContent = book.title;
 
-            var author = document.createElement("p")
-            author.textContent = "Autor: " + book.author
+            var author = document.createElement("p");
+            author.textContent = "Autor: " + book.author;
 
-            var editor = document.createElement("p")
-            editor.textContent =  "Editora: " +book.editor
+            var editor = document.createElement("p");
+            editor.textContent = "Editora: " + book.editor;
 
-            var releaseYear = document.createElement("p")
-            releaseYear.textContent =  "Lançamento: " +book.releaseYear
+            var releaseYear = document.createElement("p");
+            releaseYear.textContent = "Lançamento: " + book.releaseYear;
 
-            var genres = document.createElement("p")
-            genres.textContent =  "Generos: " +book.genres.map(obj => obj.genreName).join(", ");
+            var genres = document.createElement("p");
+            genres.textContent = "Gêneros: " + book.genres.map(obj => obj.genreName).join(", ");
 
-            container.appendChild(img)
-            container.appendChild(title)
-            container.appendChild(author)
-            container.appendChild(editor)
-            container.appendChild(releaseYear)
-            container.appendChild(genres)
+            container.appendChild(img);
+            container.appendChild(title);
+            container.appendChild(author);
+            container.appendChild(editor);
+            container.appendChild(releaseYear);
+            container.appendChild(genres);
 
-            li.appendChild(container)
-            list.appendChild(li)
+            li.appendChild(container);
+            list.appendChild(li);
 
-            console.log("container criado com imagem")
-        })
-    })
+            console.log("container criado com imagem");
+        });
+    });
 }
 
+
 //pesquisa livros por genero
-function findBooksSearched(){
+function findBooksSearched() {
+
+    var list = document.getElementById("search-book-list");
+    list.style.display = 'block';
+
+    var notFound = document.getElementById("content");
+    notFound.style.display = 'none';
+
+    var spin = document.getElementById("spinner");
+    spin.style.display = 'flex';
 
     var bookTitle = document.getElementById("text-search").value;
 
-    let url = 'http://localhost:15000/book/title?bookTitle=' + bookTitle;
+    let url = 'http://localhost:15000/book/title?bookTitle=' + bookTitle + '&clientId=' + clientLogged.clientId;
 
-    console.log("searching ", bookTitle)
+    console.log("searching ", bookTitle);
 
     fetch(url, {
         method: 'GET',
@@ -235,82 +252,83 @@ function findBooksSearched(){
     })
     .then(response => response.json())
     .then(json => {
-        //console.log("Found")
-        //console.log(json)
+        var list = document.getElementById("search-book-list");
 
-        var list = document.getElementById("search-book-list")
-
-        if(list.firstChild != null){
+        if (list.firstChild != null) {
             while (list.firstChild) {
                 list.removeChild(list.firstChild);
             }
         }
 
-        console.log("criando container")
+        console.log("criando container");
 
         json.forEach(function(book) {
-
-            console.log(book)
-
-            var li = document.createElement("li")
+            var li = document.createElement("li");
             li.style.listStyleType = 'none';
-            var container = document.createElement("div")
-            container.classList.add("searchList")
+            var container = document.createElement("div");
+            container.classList.add("searchList");
+            container.style.display = "inline-block";
+            container.style.margin = "10px 0";
 
-            var img = document.createElement("img")
-            img.style.height="250px"
-            img.src = book.coverImage
+            var img = document.createElement("img");
+            img.style.height = "250px";
+            img.src = book.coverImage;
 
-            var title = document.createElement("h4")
-            title.textContent = book.title
+            var title = document.createElement("h4");
+            title.textContent = book.title;
 
-            var author = document.createElement("p")
-            author.textContent = "Autor: " + book.author
+            var author = document.createElement("p");
+            author.textContent = "Autor: " + book.author;
 
-            var editor = document.createElement("p")
-            editor.textContent =  "Editora: " +book.editor
+            var editor = document.createElement("p");
+            editor.textContent = "Editora: " + book.editor;
 
-            var releaseYear = document.createElement("p")
-            releaseYear.textContent =  "Lançamento: " +book.releaseYear
+            var releaseYear = document.createElement("p");
+            releaseYear.textContent = "Lançamento: " + book.releaseYear;
 
-            var genres = document.createElement("p")
-            genres.textContent =  "Generos: " +book.genres.map(obj => obj.genreName).join(", ");
+            var genres = document.createElement("p");
+            genres.textContent = "Gêneros: " + book.genres.map(obj => obj.genreName).join(", ");
 
-            var addButton = document.createElement("button")
-            addButton.classList.add("searchListButton")
-            addButton.textContent = "Adicionar a lista"
+            var addButton = document.createElement("button");
+            addButton.classList.add("searchListButton");
+            addButton.textContent = "Adicionar a lista";
+            addButton.id = book.bookId;
             addButton.onclick = function() {
-               addBookToClient(book.bookId);
+                addBookToClient(book.bookId);
+                addButton.style.display = "none";
             };
 
-            container.appendChild(img)
-            container.appendChild(title)
-            container.appendChild(author)
-            container.appendChild(editor)
-            container.appendChild(releaseYear)
-            container.appendChild(genres)
-            container.appendChild(addButton)
+            container.appendChild(img);
+            container.appendChild(title);
+            container.appendChild(author);
+            container.appendChild(editor);
+            container.appendChild(releaseYear);
+            container.appendChild(genres);
+            container.appendChild(addButton);
 
-            li.appendChild(container)
-            list.appendChild(li)
+            li.appendChild(container);
+            list.appendChild(li);
 
-            console.log("container criado com imagem")
-        })
+            console.log("container criado com imagem");
+        });
 
-        if(json == null){
-            var notFound = document.getElementById("not-found");
-            notFound.style.display = "block";
-        }
-    })
+        var notFound = document.getElementById("not-found");
+        notFound.style.display = "block";
+
+        spin.style.display = 'none';
+    });
 }
 
-function findBooksRecomended(){
+function findBooksRecomended() {
 
-    var clientId = clientLogged.clientId
-    
+    var spin = document.getElementById("spinner");
+    spin.style.display = 'flex';
+
+    var clientId = clientLogged.clientId;
+
     let url = 'http://localhost:15000/book/recomend?clientId=' + clientId;
 
-    console.log("buscando livros RECOMENDADOS")
+    console.log("buscando livros RECOMENDADOS");
 
     fetch(url, {
         method: 'GET',
@@ -321,75 +339,79 @@ function findBooksRecomended(){
     })
     .then(response => response.json())
     .then(json => {
-        console.log("Found")
-        console.log(json)
+        console.log("Found");
+        console.log(json);
 
-        var list = document.getElementById("recomendation-book-list")
+        var list = document.getElementById("recomendation-book-list");
 
-        if(list.firstChild != null){
+        if (list.firstChild != null) {
             while (list.firstChild) {
                 list.removeChild(list.firstChild);
             }
         }
 
-        console.log("criando container")
+        console.log("criando container");
 
         json.forEach(function(book) {
-
-            console.log(book)
-
-            var li = document.createElement("li")
+            var li = document.createElement("li");
             li.style.listStyleType = 'none';
-            var container = document.createElement("div")
-            container.classList.add("bookList")
+            var container = document.createElement("div");
+            container.classList.add("bookList");
+            container.style.display = "inline-block";
+            container.style.margin = "10px 0";
 
-            var img = document.createElement("img")
-            img.style.height="250px"
-            img.src = book.coverImage
+            var img = document.createElement("img");
+            img.style.height = "250px";
+            img.src = book.coverImage;
 
-            var title = document.createElement("h4")
-            title.textContent = book.title
+            var title = document.createElement("h4");
+            title.textContent = book.title;
 
-            var author = document.createElement("p")
-            author.textContent = "Autor: " + book.author
+            var author = document.createElement("p");
+            author.textContent = "Autor: " + book.author;
 
-            var editor = document.createElement("p")
-            editor.textContent =  "Editora: " +book.editor
+            var editor = document.createElement("p");
+            editor.textContent = "Editora: " + book.editor;
 
-            var releaseYear = document.createElement("p")
-            releaseYear.textContent =  "Lançamento: " +book.releaseYear
+            var releaseYear = document.createElement("p");
+            releaseYear.textContent = "Lançamento: " + book.releaseYear;
 
-            var genres = document.createElement("p")
-            genres.textContent =  "Generos: " + book.genres.map(obj => obj.genreName).join(", ");
-            console.log("GENRES: ",  book.genres.map(obj => obj.genreName).join(", ") )
+            var genres = document.createElement("p");
+            genres.textContent = "Gêneros: " + book.genres.map(obj => obj.genreName).join(", ");
+            console.log("GENRES: ",  book.genres.map(obj => obj.genreName).join(", ") );
 
-            var addButton = document.createElement("button")
-            addButton.classList.add("searchListButton")
-            addButton.textContent = "Adicionar a lista"
+            var addButton = document.createElement("button");
+            addButton.classList.add("searchListButton");
+            addButton.textContent = "Adicionar a lista";
             addButton.onclick = function() {
-               addBookToClient(book.bookId);
+                addBookToClient(book.bookId);
+                addButton.style.display = "none";
             };
+            
+            container.appendChild(img);
+            container.appendChild(title);
+            container.appendChild(author);
+            container.appendChild(editor);
+            container.appendChild(releaseYear);
+            container.appendChild(genres);
+            container.appendChild(addButton);
+            
+            li.appendChild(container);
+            list.appendChild(li);
 
-            container.appendChild(img)
-            container.appendChild(title)
-            container.appendChild(author)
-            container.appendChild(editor)
-            container.appendChild(releaseYear)
-            container.appendChild(genres)
-            container.appendChild(addButton)
-
-            li.appendChild(container)
-            list.appendChild(li)
-
-            console.log("container criado com imagem")
-        })
-    })
+            console.log("container criado com imagem");
+            spin.style.display = 'none';
+        });
+    });
 }
 
 //Chamado pelo botão de + quando for adicionar um livro q já existe à lista do cliente
 //padraoADD
 function addBookToClient(bookId){
 
+
+    var spin = document.getElementById("spinner");
+    spin.style.display = 'flex ';
     let url = 'http://localhost:15000/book/choose';
 
     const clientId = clientLogged.clientId
@@ -409,11 +431,16 @@ function addBookToClient(bookId){
         },
         body: JSON.stringify(clientBookRequest)
     }) 
+    .then(response => {
+        spin.style.display = 'none';
+    })
 }
 
 function cleanSearches(){
 
     var list = document.getElementById("search-book-list")
+    var input = document.getElementById("text-search");
+    input.value = "";
 
     if(list.firstChild != null){
         while (list.firstChild) {

@@ -1,4 +1,3 @@
-<!-- Listagem de livros na coleção-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +11,9 @@
 </head>
 
 <body>
+
+  <div id="spinner" class="spiner"></div>
+
   <div id="index" >
     <div class="index">
       <!-- HEADER  -->
@@ -53,7 +55,11 @@
             <h2>Home</h2>
             <h4>Lista de recomendação de livros</h4>
           </div>
-    
+
+          <button class="reload-button" onclick="findBooksRecomended()">
+            <span class="arrow-icon">&#x21bb;</span>
+          </button>
+
           <div class="galery">
             <ul id="recomendation-book-list">
             </ul>
@@ -187,7 +193,7 @@
               </form>
               <div class="button">
                 <button id="bookCreate"type="submit" class="btnCadastrar" onclick="createBook()">Cadastrar</button>
-                <div id="spinner" class="spinner"></div>
+                
               </div>
             </div>
           </div>
